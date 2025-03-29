@@ -28,6 +28,13 @@
         public static void Main(string[] args)
         {
             string? input = Console.ReadLine();
+            for(int i = 0; i < input.Length; i++)
+            {
+                if (input[i] != '1' && input[i] != '0')
+                {
+                    input = null;
+                }
+            }
             if (input != null)
             {
                 StringToInt operation = new StringToInt(input);
