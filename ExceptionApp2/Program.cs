@@ -1,23 +1,49 @@
 ﻿namespace ExceptionApp2;
 
+public class Passport
+{
+    public string FullName { get; set; }
+    public string PassportNumber { get; set; }
+    public string Date_Of_Issue { get; set; }
+
+    public Passport(string fullName, string passportNumber, string dateOfIssue)
+    {
+        if (string.IsNullOrEmpty(fullName))
+        {
+            throw new ArgumentNullException("Full name cannot be null or empty");
+        }
+        if (string.IsNullOrEmpty(passportNumber))
+        {
+            throw new ArgumentNullException("Passport number cannot be null or empty");
+        }
+        if (string.IsNullOrEmpty(dateOfIssue))
+        {
+            throw new ArgumentNullException("Date of issue cannot be null or empty");
+        }
+
+        if (passportNumber.Length != 9)
+        {
+            throw new ArgumentException("Passport number must be 9 characters long");
+        }
+        FullName = fullName;
+        PassportNumber = passportNumber;
+        Date_Of_Issue = dateOfIssue;
+    }
+}
 class Program
 {
     static void Main(string[] args)
     {
-        Dictionary<string, int> numbers = new Dictionary<string, int>
+        try
         {
-            {"one", 1}, {"two", 2}, {"three", 3}, {"four", 4}, {"five", 5}, {"six", 6}, {"seven",7}, {"eight", 8}, {"nine", 9}, {"zero", 0}
-        };
-        Console.WriteLine("Enter the number in words (one, two, three, four, five, six, seven, eight, nine, zero):");
-        string input = Console.ReadLine().ToLower();
-        if (numbers.ContainsKey(input))
-        {
-            int number = numbers[input];
-            Console.WriteLine($"Number: {number}");
+            Passport passport = new Passport("John Doe", "123456789", "2021-10-10");
+            Console.WriteLine("Passport created successfully");
+            Passport passport2 = new Passport("", "123456789", "2021-10-10");
+            Console.WriteLine("Passport created successfully");
         }
-        else
+        catch (ArgumentNullException e)
         {
-            Console.WriteLine("Wrong input");
+            Console.WriteLine(e.Message);
         }
     }
 }
