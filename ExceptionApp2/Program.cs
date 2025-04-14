@@ -1,4 +1,4 @@
-﻿namespace class_2
+﻿namespace ExceptionApp2
 {
     internal class StringToInt
     {
