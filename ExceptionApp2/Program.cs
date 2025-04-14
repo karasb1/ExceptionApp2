@@ -1,48 +1,23 @@
 ﻿namespace ExceptionApp2
 {
-    internal class StringToInt
+    class Program
     {
-        private string _input;
-        public StringToInt(string input)
+        static void Main(string[] args)
         {
-            this._input = input;
-        }
-        public void Convert()
-        {
+            Console.WriteLine("Enter number from 0 and 1:");
+            string input = Console.ReadLine();
             try
             {
-                Console.WriteLine(_input.GetType());
-                int result = int.Parse(_input);
+                int result = Convert.ToInt32(input, 2);
                 Console.WriteLine(result);
-                Console.WriteLine(result.GetType());
             }
-            catch (Exception)
+            catch (FormatException)
             {
-                Console.WriteLine("Invalid input");
+                Console.WriteLine("Invalid number");
             }
-        }
-
-    }
-    internal class Program
-    {
-        public static void Main(string[] args)
-        {
-            string? input = Console.ReadLine();
-            for(int i = 0; i < input.Length; i++)
+            catch (OverflowException)
             {
-                if (input[i] != '1' && input[i] != '0')
-                {
-                    input = null;
-                }
-            }
-            if (input != null)
-            {
-                StringToInt operation = new StringToInt(input);
-                operation.Convert();
-            }
-            else
-            {
-                Console.WriteLine("No input provided");
+                Console.WriteLine("Number is too big");
             }
         }
     }
