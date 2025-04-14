@@ -1,18 +1,18 @@
-﻿namespace class_2
+﻿namespace ExceptionApp2
 {
     internal class StringToInt
     {
-        private string input;
+        private string _input;
         public StringToInt(string input)
         {
-            this.input = input;
+            this._input = input;
         }
         public void Convert()
         {
             try
             {
-                Console.WriteLine(input.GetType());
-                int result = int.Parse(input);
+                Console.WriteLine(_input.GetType());
+                int result = int.Parse(_input);
                 Console.WriteLine(result);
                 Console.WriteLine(result.GetType());
             }
